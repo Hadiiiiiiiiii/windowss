@@ -1,0 +1,52 @@
+{
+  "name": "graph-studio",
+  "productName": "Graph Studio",
+  "version": "3.6.0",
+  "description": "Graph Studio - calculator and graphing app for Windows",
+  "author": "Graph Studio",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --publish never"
+  },
+  "devDependencies": {
+    "electron": "^45.3.0",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "com.graphstudio.calculator",
+    "productName": "Graph Studio",
+    "copyright": "Graph Studio",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "app/**/*",
+      "build/icon.png"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Graph Studio",
+      "artifactName": "Graph-Studio-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "Graph-Studio-Portable-${version}.${ext}"
+    }
+  }
+}
